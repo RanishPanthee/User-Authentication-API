@@ -5,14 +5,21 @@ import userRoutes from "./routes/userRoutes.js"
 import config from './config.js';
 
 
-const port = config.server.port
+const port = config.server.port || 8000
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json());
 
+// Example route
 app.get('/', (req, res) => {
-  res.send('Hello, welcome !!')
-})
+  res.send('Hello, welcome !!');
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 app.use("/user", userRoutes)
 
