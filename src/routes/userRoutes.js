@@ -1,10 +1,11 @@
 import express from "express";
 import userController from "../controllers/userController.js";
 import checkAuth from "../middlewares/authMiddleware.js";
+import userValidation from "../middlewares/validator.js";
 const router = express.Router();
 
 //public routes
-router.route('/register').post(userController.userRegister)
+router.route('/register').post(userValidation(), userController.userRegister)
 router.route('/login').post(userController.userLogin)
 router.route('/getuser').get(userController.getUsers)
 router.route('/verifyEmail/:userid/:token').get(userController.verifyEmail)

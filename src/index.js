@@ -1,16 +1,14 @@
 import express from 'express';
-import dotenv from "dotenv"
 import bodyParser from "body-parser";
 import { connectDB } from "./db/connection.js"
 import userRoutes from "./routes/userRoutes.js"
-dotenv.config({
-    path: './.env'
-})
-const port = process.env.PORT
+import config from './config.js';
+
+
+const port = config.server.port
 const app = express()
 
 app.use(bodyParser.json())
-app.get("user", userRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello, welcome !!')

@@ -1,14 +1,13 @@
 import pkg from 'pg';
 const {Pool} = pkg;
-import dotenv from 'dotenv'
-dotenv.config()
+import config from '../config.js';
 
 const pool = new Pool ({
-    host : "localhost",
-    user : "postgres",
-    port : 5432,
-    password : "ranish023",
-    database : "user"
+    host : config.db.host,
+    user : config.db.user,
+    port : config.db.port,
+    password : config.db.password,
+    database : config.db.database
 
 })
 

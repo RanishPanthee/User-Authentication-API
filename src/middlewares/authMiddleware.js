@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { pool } from '../db/connection.js';
+import config from '../config.js';
 
-const secret_key = process.env.JWT_SECRET_KEY;
+const secret_key = config.key.secretKey;
 
 const checkAuth = async (req, res, next) => {
     let token;
